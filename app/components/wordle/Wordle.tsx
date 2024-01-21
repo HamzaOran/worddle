@@ -92,7 +92,7 @@ setGuess([])
 
        
         
-        <div className='mt-6'>
+        <div className='my-6'>
 {
     keyboard.map((row, i) => {
         return <div className={styles.row} key={i}>
@@ -104,13 +104,13 @@ setGuess([])
 }
         </div>
         {isCorrect && (
-        <div className='flex items-center justify-center text-green-500 font-bold mt-4'>
+        <div className='flex items-center justify-center text-green-500 text-3xl font-bold mt-4'>
           !!! Correct !!!
         </div>
       )}
 
       {isFailure && (
-        <div className='flex items-center justify-center text-red-500 font-bold mt-4'>
+        <div className='flex items-center justify-center text-red-500 text-3xl font-bold mt-4'>
           ??? Wrong ???
         </div>
       )}
