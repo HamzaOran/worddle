@@ -1,0 +1,43 @@
+.cell {
+    border: 1px solid black;
+    width: 45px;
+    height: 45px;
+    margin: 2px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.cellContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.col{
+    width:40px;
+    height: 40px;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.col:hover {
+background-color: gray;
+}

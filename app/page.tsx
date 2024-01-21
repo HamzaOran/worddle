@@ -1,6 +1,6 @@
 "use client"
 
-import Wordle from "./components/Wordle"
+import Wordle from "./components/wordle/Wordle"
 
 
 
@@ -9,8 +9,8 @@ export default function Home() {
 
    
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center ">
-      <Wordle/>
+    <div >
+      <Wordle wordle="hello"/>
     </div>
   )
 }
