@@ -13,7 +13,7 @@ const [guessAll, setGuessAll] = useState<Array<Array<string>>>([])
 const [keyboard, setKeyboard] = useState([
     ["q","w","e","r","t","y","u","o","p"],
     ["a","s","d","f","g","h","j","k","l","i"],
-    ["Delete","z","x","c","v","b","n","m","Enter"]
+    ["DL","z","x","c","v","b","n","m","EN"]
 ])
 
 if(wordle.length !== 5) {
@@ -60,8 +60,8 @@ setGuess([])
     const addKeyboard = (i:number ,j:number) => {
         const letterControl = /^[a-z]$/.test(keyboard[i][j])
 
-        const backspace = keyboard[i][j] === "Delete";
-        const enter = keyboard[i][j] === "Enter"
+        const backspace = keyboard[i][j] === "DL";
+        const enter = keyboard[i][j] === "EN"
         
         
         if(backspace) {
@@ -77,7 +77,8 @@ setGuess([])
     const isCorrect = guessAll.length > 0 && guessAll[guessAll.length - 1].join("") === wordle;
     const isFailure =! isCorrect && guessAll.length === 6 
   return (
-    <div >
+    <div className='flex flex-col justify-center items-center mt-40' >
+        <h1 className=' text-4xl font-bold mb-10'>Worddle</h1>
         <PreviousGuess guessAll={guessAll} wordle={wordle} charMap={charMap}/> 
 
         {!isCorrect && !isFailure  && <CurrentGuess guess={guess}/>}
@@ -87,21 +88,11 @@ setGuess([])
             })
         }
        
-       {
-        isCorrect && <div className='flex items-center justify-center'>Your guess is <span>Correct</span></div>
-       }
-        
-        {
-        isFailure && <div className='flex items-center justify-center'>Your guess is <span>Wrong</span></div>
-       }
+       
 
-        {/* {
-            Array.from({length: 5}).map((_,i) => {
-                return <div className={styles.cell} key={i}>{guess[i]}</div>
-            })
-        } */}
+       
         
-        <div style={{marginTop:"25px"}}>
+        <div className='mt-6'>
 {
     keyboard.map((row, i) => {
         return <div className={styles.row} key={i}>
@@ -112,7 +103,17 @@ setGuess([])
     })
 }
         </div>
-        
+        {isCorrect && (
+        <div className='flex items-center justify-center text-green-500 font-bold mt-4'>
+          !!! Correct !!!
+        </div>
+      )}
+
+      {isFailure && (
+        <div className='flex items-center justify-center text-red-500 font-bold mt-4'>
+          ??? Wrong ???
+        </div>
+      )}
     </div>
   )
 }
@@ -203,4 +204,4 @@ const NullGuess = () => {
         )
 }
 
-export default Wordle
+export default Wordle;
