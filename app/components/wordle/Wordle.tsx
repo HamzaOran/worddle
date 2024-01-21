@@ -16,6 +16,7 @@ const [keyboard, setKeyboard] = useState([
     ["a","s","d","f","g","h","j","k","l","i"],
     ["DL","z","x","c","v","b","n","m","EN"]
 ])
+const [correctWord, setCorrectWord] = useState<string | null>(null);
 
 if(wordle.length !== 5) {
     throw new Error("You need to enter a 5-letter word")
@@ -81,7 +82,17 @@ setGuess([])
     const restartGame = () => {
         setGuess([]);
         setGuessAll([]);
+        setCorrectWord(null); 
       };
+
+      if (isCorrect && correctWord === null) {
+        setCorrectWord(wordle);
+      }
+  
+      
+      if (isFailure && correctWord === null) {
+        setCorrectWord(wordle);
+      }
   return (
     <div className='flex flex-col justify-center items-center mt-40' >
         <h1 className=' text-5xl font-bold mb-10'>WORDDLE</h1>
@@ -112,7 +123,10 @@ setGuess([])
         </div>
         {isCorrect && (
         <div className='flex flex-col gap-8 items-center justify-center text-green-500 text-3xl font-bold mt-4'>
-         Correct! You are the WINNER!!!
+          Correct! You are the WINNER!!!
+          <div className='text-lg font-normal mt-2'>
+            The correct word is: {correctWord}
+          </div>
           <button
             className='ml-2 px-4 py-2 bg-blue-500 text-white text-md rounded-md'
             onClick={restartGame}
@@ -124,7 +138,10 @@ setGuess([])
 
       {isFailure && (
         <div className='flex flex-col gap-8 items-center justify-center text-red-500 text-3xl font-bold mt-4'>
-         Wrong! You are the LOSER!!!
+          Wrong! You are the LOSER!!!
+          <div className='text-lg font-normal mt-2'>
+            The correct word is: {correctWord}
+          </div>
           <button
             className='ml-2 px-4 py-2 bg-blue-500 text-white rounded-md'
             onClick={restartGame}
