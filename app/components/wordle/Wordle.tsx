@@ -4,7 +4,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import styles from "./Wordle.module.css"
 
 type wordleType = {
-    wordle: string
+    wordle: string;
+    
 }
 
 const Wordle = ({wordle}: wordleType) => {
@@ -76,9 +77,15 @@ setGuess([])
 
     const isCorrect = guessAll.length > 0 && guessAll[guessAll.length - 1].join("") === wordle;
     const isFailure =! isCorrect && guessAll.length === 6 
+
+    const restartGame = () => {
+        setGuess([]);
+        setGuessAll([]);
+      };
   return (
     <div className='flex flex-col justify-center items-center mt-40' >
-        <h1 className=' text-4xl font-bold mb-10'>Worddle</h1>
+        <h1 className=' text-5xl font-bold mb-10'>WORDDLE</h1>
+        <h2 className=' text-3xl font-bold mb-10'>Guess the word and WIN!!!</h2>
         <PreviousGuess guessAll={guessAll} wordle={wordle} charMap={charMap}/> 
 
         {!isCorrect && !isFailure  && <CurrentGuess guess={guess}/>}
@@ -104,14 +111,26 @@ setGuess([])
 }
         </div>
         {isCorrect && (
-        <div className='flex items-center justify-center text-green-500 text-3xl font-bold mt-4'>
-          !!! Correct !!!
+        <div className='flex flex-col gap-8 items-center justify-center text-green-500 text-3xl font-bold mt-4'>
+         Correct! You are the WINNER!!!
+          <button
+            className='ml-2 px-4 py-2 bg-blue-500 text-white text-md rounded-md'
+            onClick={restartGame}
+          >
+            Restart
+          </button>
         </div>
       )}
 
       {isFailure && (
-        <div className='flex items-center justify-center text-red-500 text-3xl font-bold mt-4'>
-          ??? Wrong ???
+        <div className='flex flex-col gap-8 items-center justify-center text-red-500 text-3xl font-bold mt-4'>
+         Wrong! You are the LOSER!!!
+          <button
+            className='ml-2 px-4 py-2 bg-blue-500 text-white rounded-md'
+            onClick={restartGame}
+          >
+            Restart
+          </button>
         </div>
       )}
     </div>
