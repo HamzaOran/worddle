@@ -10,7 +10,7 @@ export default function Home() {
   const randomWord = words[randomIndex];
 
   return (
-    <div>
+    <div className='bg-white'>
       <Wordle wordle={randomWord} />
     </div>
   );
